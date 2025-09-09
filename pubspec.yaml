@@ -1,0 +1,7 @@
+name: hg_openapi
+description: An api schema and packages.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.7.1
