@@ -1,193 +1,156 @@
-{
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Simple API overview",
-    "version": "2.0.0"
-  },
-  "paths": {
-    "/": {
-      "get": {
-        "operationId": "listVersionsv2",
-        "summary": "List API versions",
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "foo": {
-                    "value": {
-                      "versions": [
-                        {
-                          "status": "CURRENT",
-                          "updated": "2011-01-21T11:33:21Z",
-                          "id": "v2.0",
-                          "links": [
-                            {
-                              "href": "http://127.0.0.1:8774/v2/",
-                              "rel": "self"
-                            }
-                          ]
-                        },
-                        {
-                          "status": "EXPERIMENTAL",
-                          "updated": "2013-07-23T11:33:21Z",
-                          "id": "v3.0",
-                          "links": [
-                            {
-                              "href": "http://127.0.0.1:8774/v3/",
-                              "rel": "self"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "300": {
-            "description": "300 response",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "foo": {
-                    "value": {
-                      "versions": [
-                        {
-                          "status": "CURRENT",
-                          "updated": "2011-01-21T11:33:21Z",
-                          "id": "v2.0",
-                          "links": [
-                            {
-                              "href": "http://127.0.0.1:8774/v2/",
-                              "rel": "self"
-                            }
-                          ]
-                        },
-                        {
-                          "status": "EXPERIMENTAL",
-                          "updated": "2013-07-23T11:33:21Z",
-                          "id": "v3.0",
-                          "links": [
-                            {
-                              "href": "http://127.0.0.1:8774/v3/",
-                              "rel": "self"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v2": {
-      "get": {
-        "operationId": "getVersionDetailsv2",
-        "summary": "Show API version details",
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "foo": {
-                    "value": {
-                      "version": {
-                        "status": "CURRENT",
-                        "updated": "2011-01-21T11:33:21Z",
-                        "media-types": [
-                          {
-                            "base": "application/xml",
-                            "type": "application/vnd.openstack.compute+xml;version=2"
-                          },
-                          {
-                            "base": "application/json",
-                            "type": "application/vnd.openstack.compute+json;version=2"
-                          }
-                        ],
-                        "id": "v2.0",
-                        "links": [
-                          {
-                            "href": "http://127.0.0.1:8774/v2/",
-                            "rel": "self"
-                          },
-                          {
-                            "href": "http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf",
-                            "type": "application/pdf",
-                            "rel": "describedby"
-                          },
-                          {
-                            "href": "http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl",
-                            "type": "application/vnd.sun.wadl+xml",
-                            "rel": "describedby"
-                          },
-                          {
-                            "href": "http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl",
-                            "type": "application/vnd.sun.wadl+xml",
-                            "rel": "describedby"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "203": {
-            "description": "203 response",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "foo": {
-                    "value": {
-                      "version": {
-                        "status": "CURRENT",
-                        "updated": "2011-01-21T11:33:21Z",
-                        "media-types": [
-                          {
-                            "base": "application/xml",
-                            "type": "application/vnd.openstack.compute+xml;version=2"
-                          },
-                          {
-                            "base": "application/json",
-                            "type": "application/vnd.openstack.compute+json;version=2"
-                          }
-                        ],
-                        "id": "v2.0",
-                        "links": [
-                          {
-                            "href": "http://23.253.228.211:8774/v2/",
-                            "rel": "self"
-                          },
-                          {
-                            "href": "http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf",
-                            "type": "application/pdf",
-                            "rel": "describedby"
-                          },
-                          {
-                            "href": "http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl",
-                            "type": "application/vnd.sun.wadl+xml",
-                            "rel": "describedby"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+openapi: 3.1.0
+info:
+  title: Hydrogarden
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /device/vitals/{deviceId}:
+    get:
+      description: Get info about device vitals
+      operationId: getDeviceVitals
+      tags:
+        - deviceVitals
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceVitalsViewModel'
+  /device/vitals/{deviceId}/enable:
+    post:
+      description: Enable device with given id.
+      operationId: enableDevice
+      tags:
+        - deviceVitals
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Device has been (or already was) enabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceVitalsViewModel'
+  /device/vitals/{deviceId}/disable:
+    post:
+      description: Disable device with given id.
+      operationId: disableDevice
+      tags:
+        - deviceVitals
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Device has been (or already was) disabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceVitalsViewModel'
+  /device/vitals/{deviceId}/circuit/{circuitId}/enable:
+    post:
+      description: Enable circuit with given id.
+      operationId: enableCircuit
+      tags:
+        - deviceVitals
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: circuitId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Circuit has been (or already was) enabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceVitalsViewModel'
+  /device/vitals/{deviceId}/circuit/{circuitId}/disable:
+    post:
+      description: Disable circuit with given id.
+      operationId: disableCircuit
+      tags:
+        - deviceVitals
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: circuitId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Circuit has been (or already was) disabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceVitalsViewModel'
+components:
+  schemas:
+    DeviceVitalsViewModel:
+      type: object
+      required: [id, name, state, desiredState, lastKeepAliveSendTime, lastHeartbeatReceiveTime, circuits]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        state:
+          $ref: '#/components/schemas/DeviceState'
+        desiredState:
+          $ref: '#/components/schemas/DeviceState'
+        lastKeepAliveSendTime:
+          type: string
+          format: date
+        lastHeartbeatReceiveTime:
+          type: string
+          format: date
+        circuits:
+          type: array
+          items:
+            $ref: '#/components/schemas/CircuitVitalsViewModel'
+
+
+    CircuitVitalsViewModel:
+      type: object
+      required: [id, name, state, desiredState]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        state:
+          type: boolean
+        desiredState:
+          type: boolean
+
+    DeviceState:
+      type: string
+      enum: ["ALIVE", "DEAD"]
 
