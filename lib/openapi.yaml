@@ -17,7 +17,7 @@ paths:
           name: deviceId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Successful
@@ -36,7 +36,7 @@ paths:
           name: deviceId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Device has been (or already was) enabled.
@@ -55,7 +55,7 @@ paths:
           name: deviceId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Device has been (or already was) disabled.
@@ -74,12 +74,12 @@ paths:
           name: deviceId
           required: true
           schema:
-            type: integer
+            type: string
         - in: path
           name: circuitId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Circuit has been (or already was) enabled.
@@ -98,12 +98,12 @@ paths:
           name: deviceId
           required: true
           schema:
-            type: integer
+            type: string
         - in: path
           name: circuitId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Circuit has been (or already was) disabled.
