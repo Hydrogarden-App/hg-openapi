@@ -118,7 +118,7 @@ components:
       required: [id, name, state, desiredState, lastKeepAliveSendTime, lastHeartbeatReceiveTime, circuits]
       properties:
         id:
-          type: integer
+          type: string
         name:
           type: string
         state:
@@ -142,7 +142,7 @@ components:
       required: [id, name, state, desiredState]
       properties:
         id:
-          type: integer
+          type: string
         name:
           type: string
         state:
