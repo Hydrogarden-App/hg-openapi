@@ -6,12 +6,12 @@ servers:
   - url: http://localhost:8080
 
 paths:
-  /devices:
+  /device/info:
     get:
-      description: Get info about all devices.
-      operationId: getDevices
+      description: Get all devices info.
+      operationId: getAllDeviceInfo
       tags:
-        - devicesList
+        - deviceInfo
       responses:
         '200':
           description: Successful
@@ -20,7 +20,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceVitalsViewModel'
+                  $ref: '#/components/schemas/DeviceInfoViewModel'
   /device/vitals/{deviceId}:
     get:
       description: Get info about device vitals
@@ -150,7 +150,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CircuitVitalsViewModel'
-
+    
+    DeviceInfoViewModel:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
 
     CircuitVitalsViewModel:
       type: object
