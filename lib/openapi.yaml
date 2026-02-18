@@ -153,6 +153,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeviceVitalsViewModel'
+  /actuator/health:
+    get:
+      description: Get application health status.
+      operationId: getHealth
+      tags:
+        - actuator
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: ["UP", "DOWN"]
 components:
   schemas:
     DeviceVitalsViewModel:
