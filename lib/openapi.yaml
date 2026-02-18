@@ -31,6 +31,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceInfoViewModel'
       tags:
         - deviceInfo
       responses:
@@ -39,8 +45,6 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
                   $ref: '#/components/schemas/DeviceInfoViewModel'
 
       
@@ -153,11 +157,9 @@ components:
   schemas:
     DeviceVitalsViewModel:
       type: object
-      required: [id, name, state, desiredState, lastKeepAliveSendTime, lastHeartbeatReceiveTime, circuits]
+      required: [id, state, desiredState, lastKeepAliveSendTime, lastHeartbeatReceiveTime, circuits]
       properties:
         id:
-          type: string
-        name:
           type: string
         state:
           $ref: '#/components/schemas/DeviceState'
@@ -202,8 +204,6 @@ components:
       required: [id, name, state, desiredState]
       properties:
         id:
-          type: string
-        name:
           type: string
         state:
           type: boolean
